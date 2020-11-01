@@ -1,0 +1,223 @@
+% VLDB template version of 2020-03-05 enhances the ACM template, version 1.7.0:
+% https://www.acm.org/publications/proceedings-template
+% The ACM Latex guide provides further information about the ACM template
+
+\documentclass[sigconf, nonacm]{acmart}
+
+\usepackage{hyperref} % Hacer referencias bknes
+\usepackage{comment}
+\usepackage[indent]{parskip} % Para hacer saltos de linea automático
+\setlength{\parskip}{0.5\baselineskip minus2pt} % Aquí se modifica el salto de linea
+
+%% The following content must be adapted for the final version
+% paper-specific
+\newcommand\vldbdoi{XX.XX/XXX.XX}
+\newcommand\vldbpages{XXX-XXX}
+% issue-specific
+\newcommand\vldbvolume{14}
+\newcommand\vldbissue{1}
+\newcommand\vldbyear{2020}
+% should be fine as it is
+\newcommand\vldbauthors{\authors}
+\newcommand\vldbtitle{\shorttitle} 
+% leave empty if no availability url should be set
+\newcommand\vldbavailabilityurl{http://vldb.org/pvldb/format_vol14.html}
+
+\begin{document}
+\title{Landslide Early-Warning in Continental Chile}
+\subtitle{Project Proposal and Work Schedule \\
+Universidad de Chile, Santiago, Chile} 
+
+%% ################################################
+%% Pongan sus contactos aqui abajo
+%% ###############################################
+
+%%
+%% The "author" command and its associated commands are used to define the authors and their affiliations.
+\author{José Díaz}
+\affiliation{}
+\email{jose.diaz.v@ug.uchile.cl}
+
+\author{Fabián Lema}
+\affiliation{}
+\email{fabian.lema@ing.uchile.cl}
+
+\author{Francisco Muñoz}
+\affiliation{}
+\email{femunoz@dim.uchile.cl}
+
+\author{Kevin Pinochet}
+\affiliation{}
+\email{kevin.pinochet@ug.uchile.cl}
+
+\author{Tomás Rojas}
+\affiliation{}
+\email{tomas.rojas.c@ug.uchile.cl}
+
+\author{Victor Faraggi}
+\affiliation{}
+\email{victor.faraggi@ug.uchile.cl}
+
+%%
+%% The abstract is a short summary of the work to be presented in the
+%% article.
+\begin{abstract}
+% Around the world and though out humman history, landslides have been a risk to both humman life and infrastructure. Even so, since the second half of the last century, the effects of climate change have changed erosion, precipitation, forestation, and the soil type. All of them important factors that can increase the frequency and severity of landslides.  This document aims to present the team research question and work plan for the competition ProjectX 2020. 
+% For this purpose, interviews where done to field experts, previous research was study and possible usefully data was gathered.
+
+%hola
+% 
+%mi abstrak : 
+Landslides are a major hazard to human life and society's infrastructure. Due to climate change's effect on erosion, precipitation and many other variables involved in the landslide process, a rise in both the severity and occurrence of these events are expected. For ProjectX 2020, our team will attempt to use machine learning methods to improve current early warning systems from a risk based perspective and taking into account weather variability. This document presents our team's interviews with domain experts, our proposal, previous research, the expected data that we will need to take into account and our work plan for the rest of the competition.
+
+%opiniones :
+% > step -\o/-
+% > jose: Se cambia
+% > panchitox
+
+% veredicto final : 
+
+\end{abstract}
+
+\maketitle
+
+\section{Interviews}
+
+% Regarding the approach we decided to take to define our research question, we chose to tackle a regional or local extreme event. This decision was based on two important points. 
+% The first one was due to the previous knowledge we had about the intersection of machine learning and extreme weather event prediction: most of the literature focused on events that affected countries from the northern hemisphere [citation needed]. %existen ejemplos de tormentas, huracanes, incendios, etc., voy a buscar
+% The second one was because we wanted to strive our work to be applicable to real world events.
+
+During a time span of two weeks we met with multiple experts that came from different domains such as Hydrological modelling, Landslide and Forest Fire mitigation. % and Water Floods. 
+
+Our first meeting was with Pablo Mendoza, PhD at Colorado Boulder and Postdoc at University Corporation for Atmospheric Research (UCAR). He introduced us briefly to hydrological modeling and the state of art about machine learning models applied in hydrology. As this was the first expert we met, he encouraged us to ask ourselves important questions that could define what \textit{we} wanted this project to be. 
+
+The second expert that we met was Alberto de la Fuente, PhD in Engineering Sciences from Universidad de Chile. He remarked that hydrological models are very closely related to statistical ones. In his experience, he has noticed many research projects give too many importance to the tools used to solve the problem rather than the conceptual ideas behind the models.
+
+The third expert that we met was Pedro Berrios, a firefighter and Engineer that works at the National Service of Geology and Mining of Chile  (\href{https://www.sernageomin.cl/}{Sernageomin}). He told us briefly the context about landslides, how they predict them and how this affects our country. He remarked to us the importance of having a model that can predict the place of a landslide, and he told us that he could provide us with some datasets if we tried to solve this problem. 
+
+
+The fourth meeting we had was with Andrés Weintraub, an expert in Forest Fire mitigation, PhD at UC Berkeley and awarded the Chilean National Science Award. First, he explained his current line of research in forest fires: decision making in order to minimize the risk. The exchange allowed us to gain insight on the current state of forest fire modelling and the current needs that Chile is experiencing in this regard. He also explained some introductory methodologies to perform regional and local risk-based analyses. 
+
+
+The final expert we met was Juan Pablo Boisier, researcher at the Chilean Center for Climate and Resiliency (\href{https://www.cr2.cl}{CR2}) and PhD in Climate Science at École Polytechnique. On one side, he advised us against focusing on “early predictions” for drought. 
+
+% On the other side, early warning systems for floods or landslides seemed promising. 
+
+% Regarding to forest fires, he expressed that it can be tackled from multiple angles.
+
+% Then, in the case we wanted to work on it, we would be faced with a difficult choice. 
+
+He insisted that, in order to define a good research question, we would have to ask ourselves which kind of perspective we want to work on. Ultimately, together, we pondered that adding a human risk based factor to our analysis would be a nice way to take our research closer to decision makers. 
+
+
+\subsection{Main Takeaways}
+
+After the interviews, we thought on the extreme events that were most mentioned: forest fires, floods and landslides. There is work to be done on all of them but we needed to decide what kind of perspective we wanted to give to our work. Also, as machine learning practitioners working on geophysical subjects we would have to define a solid conceptual model and then develop our data driven one. In addition, we identified that using human risk based features would make our work more complete and it would make it more relevant to decision makers. 
+
+As we reviewed the three main extreme events, we decided that landslides were a promising area to work on. Whereas, for forest fires it was pointed out that it would be more difficult to produce meaningful results in only three months and, for floods, it would be much harder to get our hands on relevant data sources.
+
+
+\section{Proposal}
+
+We propose a ML oriented method for early-warning of landslide events in Continental Chile, aiming to help the decision-makers from the National Emergency Office of the Ministry of the Interior \href{https://www.onemi.gov.cl/}{ONEMI} make informed decisions.
+
+
+\section{Related Research}
+
+
+Several related research on landslide events has been done. 
+On the theoretical side, there have been very good attempts to model the phenomena using numerical simulations. For example, given the occurrence of a landslide, there have been attempts to obtain knowledge about the probability density function of the extension and duration of it previous to the event actually takes place \cite{characteristic_scales}. 
+More probabilistic approaches have been taken into consideration, such as using \emph{Information Value}, \emph{Weights of Evidence} and \emph{Certainty Factor} \cite{predictivelandslide}. There have been more ML related approaches, like SVM based techniques or deep learning's Fully Connected Sparse Autoencoder (FC-SAE) \cite{fcsae}, used in landslide susceptibility modeling \cite{svmlandslide}. There's been also studies of several deep learning approaches applied to deep-seated landslides. \cite{deep_seated_implementations} Has reviewed multiple machine learning based nowcasting strategies applied to the latter, ranging from LSTM to ELM SVM.
+%c me murio el cel
+%dale tu jose
+% tengo una duda: porque nuestro estilo de cita es [numero] nomas. en vez de (apellido et al). aaa ya kse, los ponemos al final de la frase. 
+% Yo he visto el [numero] mas seguido me parec
+%No es lo q pusiste en el chat?puse strategies. implementations me suena a su blog de mediumxd 
+% AAhhh , no cache q habias cambiado eso tambien jaj
+%aja%Y yaaya,  khso
+%dele nomaaaaaaaaa
+\section{Why is this problem relevant to climate?}
+
+With the exacerbation of climate change; droughts, precipitations, soil changes and other phenomena have become more extreme while at the same time becoming more unpredictable. \cite{climatechangeimpacts}. 
+This fact is of great relevance considering that intense rainfall events, rapid snow melt, storm waves and deforestation are some of the most important trigger factors of landslides \cite{libro_geologia}.
+
+
+In the case of northern and central Andean regions of Chile, several studies \cite{boisier, falvey, garreaud} have shown important changes in climate patterns trends since the last four decades. Particularly, there has been an increase in temperatures of 0,25°C per decade, while it is expected that precipitations will decrease in the next decades, even reaching deficits between 25\% and 50\%. It is expected that these significant changes in the regional climate will affect the frequency and magnitude of landslides.
+
+The climate crisis we are facing as a planet is not only affecting the environment, but also affecting thousands of millions \cite{landslidesandclimatechange}. In Chile, landslides has affected numerous communities located in Andes's foothills. According to data from SERNAGEOMIN, between 1980 and 2017 there has been at least 214 deaths in the country because events like landslides and debris flows \cite{sernageomin}.
+
+\section{Research Question}
+
+One of the important points missing that we noticed is the lack of consideration to the risks related to this phenomena. By risk we understand, as said by Pedro Berrios, ``the danger affecting communities, ranging from material losses to death''. Another factor to take into account is the need of an adaptive model that takes into account future weather data variability. In this context, our main goal is to answer the following: 
+
+
+
+\textit{Taking into account the current weather variability and the risk, as defined above: How can we improve the current early-warning systems with statistical models? moreover: Is it possible to predict the place and time of occurrence of landslides?}
+
+
+\section{Why use Machine Learning?}
+% En esta sección faltan MUCHAS referencias uwu
+
+As Pedro told us in his interview, in remote and isolated populations there is not enough resources or money for a complex monitoring system, so availability of real time data for all catchments can be non feasible. However, historical data and real-time weather data is available hence allowing for a ML model that takes of this to be a solution worth of consideration.   
+
+Moreover, the data at hand uses different types of formats, e.g. gridded weather data or local remote sensing from susceptible slopes. Therefore, techniques that can take advantage of this multiplicity of formats are essential. This is where ensemble learning \cite{ensembles} or other machine learning methods \cite{other_data_fusion} can be of use. 
+
+Given this, the opportunity to use machine learning seems clear. Due to its ability to find complex or hidden correlations between the data sources, depending of the type of models used. 
+
+As a side note, as a result from our meeting with Pedro Berrios, we are aware that currently ONEMI's emergency alerts for landslides is based on expert human criteria that analyses each of the available observations. It's not difficult to deduce that the implementation of a machine learning model would improve this repetitive task and thus making experts available to do more relevant work. %
+
+
+\section{Type of Research Contribution}
+
+The contribution would be the implementation of new techniques and ML models to evaluate the real-time risk of a landslide, prioritizing the prevention of human losses. Also, using the datasets and information that is available in Chile and low density regions.  %
+
+
+\section{Proposed Solutions/Methods}
+
+At this point of the research process, we have the following proposed solutions to answer the question: %
+
+\begin{enumerate}
+    \item Combination of LSTM and Convolutional Networks.
+    \item MOGPS with spectral mixture.
+\end{enumerate}
+
+The idea behind implementating  LSTM and Convolutional networks is to be able to combine both satellite and geographic data on a time series fashion.  
+
+The implementation of MOGPS's offers an extremely powerful tool to work with time series, even detecting small correlations between several sources, allowing it to make accurate future predictions in complex systems. 
+
+The human risk factor has to be considered in the implementation, due to the limited resources that emergency rescue organizations operate, its important to prioritize response to critical areas. 
+
+\section{Possible Datasets}
+\begin{itemize}
+    \item \href{http://vismet.cr2.cl/}{Meteorological Visualization (VisMet)}, is a real time and historical meteorological data of Chile, by the Center for Climate and Resilience Research (CR2)
+    \item Acceleration maps offered by the National Sismologic Center.
+    \item Census of Chile for demographic data
+    \item Georeferenced data of urban areas in the country provided by \href {http://www.ide.cl/}{IDE Chile}
+    \item Slope, Land use, Topology, Soil moisture, Precipitation, Snow melting and Deformation. All of this key variables will be taken from satellite observation data offered by ProjecX organizers.
+    \item \href{https://maps.nccs.nasa.gov/arcgis/apps/webappviewer/index.html?id=824ea5864ec8423fb985b33ee6bc05b7}{NASA Landside Viewer}.
+    \item Remote sensing products, like MODIS and Landsat satellites images. These tools can provide information about the presence of vegetation (NDVI index) and storms (infrared bands).
+    \item \href{https://portalgeominbeta.sernageomin.cl/}{A database containing geographic position and date of recorded landslides around Chile proportioned by the SERNAGEOMIN.}
+    % Creo q podriamos entregar
+    % sip
+    % me parec
+\end{itemize}
+
+\section{Workflow}
+
+At this time, the estimated workflow is as follows for the next two and a half months: 
+
+\begin{enumerate}
+    \item Data prepossessing, cleanup and visualization (2 weeks).
+    \item Preparation of work environment (1 week).
+    \item Testing viability of models and definition of final implementation(1 week). 
+    \item Training (3 weeks).
+    \item Results analysis (1 week).
+    \item Paper redaction (2 weeks).
+\end{enumerate}
+
+
+\bibliographystyle{ACM-Reference-Format}
+\bibliography{sample}
+
+\end{document}
+\endinput
