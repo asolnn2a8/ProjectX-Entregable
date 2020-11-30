@@ -4,6 +4,7 @@
 
 \documentclass[sigconf, nonacm]{acmart}
 
+\usepackage{lipsum}
 \usepackage{hyperref} % Hacer referencias bknes
 \usepackage{comment}
 \usepackage[indent]{parskip} % Para hacer saltos de linea automático
@@ -25,7 +26,7 @@
 
 \begin{document}
 \title{Landslide Early-Warning in Continental Chile}
-\subtitle{Project Proposal and Work Schedule \\
+\subtitle{Research Paper Final Submission \\
 Universidad de Chile, Santiago, Chile} 
 
 %% ################################################
@@ -68,38 +69,33 @@ Universidad de Chile, Santiago, Chile}
 %hola
 % 
 %mi abstrak : 
-Landslides are a major hazard to human life and society's infrastructure. Due to climate change's effect on erosion, precipitation and many other variables involved in the landslide process, a rise in both the severity and occurrence of these events are expected. For ProjectX 2020, our team will attempt to use machine learning methods to improve current early warning systems from a risk based perspective and taking into account weather variability. This document presents our team's interviews with domain experts, our proposal, previous research, the expected data that we will need to take into account and our work plan for the rest of the competition.
+Landslides are a major hazard to human life and society's infrastructure. Due to climate change's effect on precipitation, temperature and many other variables involved in the landslide process, a rise in both the severity and occurrence of these events are expected. For ProjectX 2020, our team will attempt to use machine learning methods to improve current early warning systems from a risk based perspective and taking into account weather variability. %This document presents our team's interviews with domain experts, our proposal, previous research, the expected data that we will need to take into account and our work plan for the rest of the competition.
+To achieve this, the team developed three APIs that can access and process relevant data to the problem from several sources and designed a Convolutional Network with LSTM to detect the occurrences of a landslide. The following steps will be the preparation of the training data, the training of the detection model and the evaluation of hyperparameters.
 
-%opiniones :
-% > step -\o/-
-% > jose: Se cambia
-% > panchitox
-
-% veredicto final : 
-
+% achieve this... 
 \end{abstract}
 
 \maketitle
 
-\section{Interviews}
+%\section{Interviews}
 
 % Regarding the approach we decided to take to define our research question, we chose to tackle a regional or local extreme event. This decision was based on two important points. 
 % The first one was due to the previous knowledge we had about the intersection of machine learning and extreme weather event prediction: most of the literature focused on events that affected countries from the northern hemisphere [citation needed]. %existen ejemplos de tormentas, huracanes, incendios, etc., voy a buscar
 % The second one was because we wanted to strive our work to be applicable to real world events.
 
-During a time span of two weeks we met with multiple experts that came from different domains such as Hydrological modelling, Landslide and Forest Fire mitigation. % and Water Floods. 
+%During a time span of two weeks we met with multiple experts that came from different domains such as Hydrological modelling, Landslide and Forest Fire mitigation. % and Water Floods. 
 
-Our first meeting was with Pablo Mendoza, PhD at Colorado Boulder and Postdoc at University Corporation for Atmospheric Research (UCAR). He introduced us briefly to hydrological modeling and the state of art about machine learning models applied in hydrology. As this was the first expert we met, he encouraged us to ask ourselves important questions that could define what \textit{we} wanted this project to be. 
+%Our first meeting was with Pablo Mendoza, PhD at Colorado Boulder and Postdoc at University Corporation for Atmospheric Research (UCAR). He introduced us briefly to hydrological modeling and the state of art about machine learning models applied in hydrology. As this was the first expert we met, he encouraged us to ask ourselves important questions that could define what \textit{we} wanted this project to be. 
 
-The second expert that we met was Alberto de la Fuente, PhD in Engineering Sciences from Universidad de Chile. He remarked that hydrological models are very closely related to statistical ones. In his experience, he has noticed many research projects give too many importance to the tools used to solve the problem rather than the conceptual ideas behind the models.
+%The second expert that we met was Alberto de la Fuente, PhD in Engineering Sciences from Universidad de Chile. He remarked that hydrological models are very closely related to statistical ones. In his experience, he has noticed many research projects give too many importance to the tools used to solve the problem rather than the conceptual ideas behind the models.
 
-The third expert that we met was Pedro Berrios, a firefighter and Engineer that works at the National Service of Geology and Mining of Chile  (\href{https://www.sernageomin.cl/}{Sernageomin}). He told us briefly the context about landslides, how they predict them and how this affects our country. He remarked to us the importance of having a model that can predict the place of a landslide, and he told us that he could provide us with some datasets if we tried to solve this problem. 
-
-
-The fourth meeting we had was with Andrés Weintraub, an expert in Forest Fire mitigation, PhD at UC Berkeley and awarded the Chilean National Science Award. First, he explained his current line of research in forest fires: decision making in order to minimize the risk. The exchange allowed us to gain insight on the current state of forest fire modelling and the current needs that Chile is experiencing in this regard. He also explained some introductory methodologies to perform regional and local risk-based analyses. 
+%The third expert that we met was Pedro Berrios, a firefighter and Engineer that works at the National Service of Geology and Mining of Chile  (\href{https://www.sernageomin.cl/}{Sernageomin}). He told us briefly the context about landslides, how they predict them and how this affects our country. He remarked to us the importance of having a model that can predict the place of a landslide, and he told us that he could provide us with some datasets if we tried to solve this problem. 
 
 
-The final expert we met was Juan Pablo Boisier, researcher at the Chilean Center for Climate and Resiliency (\href{https://www.cr2.cl}{CR2}) and PhD in Climate Science at École Polytechnique. On one side, he advised us against focusing on “early predictions” for drought. 
+%The fourth meeting we had was with Andrés Weintraub, an expert in Forest Fire mitigation, PhD at UC Berkeley and awarded the Chilean National Science Award. First, he explained his current line of research in forest fires: decision making in order to minimize the risk. The exchange allowed us to gain insight on the current state of forest fire modelling and the current needs that Chile is experiencing in this regard. He also explained some introductory methodologies to perform regional and local risk-based analyses. 
+
+
+%The final expert we met was Juan Pablo Boisier, researcher at the Chilean Center for Climate and Resiliency (\href{https://www.cr2.cl}{CR2}) and PhD in Climate Science at École Polytechnique. On one side, he advised us against focusing on “early predictions” for drought. 
 
 % On the other side, early warning systems for floods or landslides seemed promising. 
 
@@ -107,113 +103,306 @@ The final expert we met was Juan Pablo Boisier, researcher at the Chilean Center
 
 % Then, in the case we wanted to work on it, we would be faced with a difficult choice. 
 
-He insisted that, in order to define a good research question, we would have to ask ourselves which kind of perspective we want to work on. Ultimately, together, we pondered that adding a human risk based factor to our analysis would be a nice way to take our research closer to decision makers. 
+%He insisted that, in order to define a good research question, we would have to ask ourselves which kind of perspective we want to work on. Ultimately, together, we pondered that adding a human risk based factor to our analysis would be a nice way to take our research closer to decision makers. 
 
 
-\subsection{Main Takeaways}
+%\subsection{Main Takeaways}
 
-After the interviews, we thought on the extreme events that were most mentioned: forest fires, floods and landslides. There is work to be done on all of them but we needed to decide what kind of perspective we wanted to give to our work. Also, as machine learning practitioners working on geophysical subjects we would have to define a solid conceptual model and then develop our data driven one. In addition, we identified that using human risk based features would make our work more complete and it would make it more relevant to decision makers. 
+%After the interviews, we thought on the extreme events that were most mentioned: forest fires, floods and landslides. There is work to be done on all of them but we needed to decide what kind of perspective we wanted to give to our work. Also, as machine learning practitioners working on geophysical subjects we would have to define a solid conceptual model and then develop our data driven one. In addition, we identified that using human risk based features would make our work more complete and it would make it more relevant to decision makers. 
 
-As we reviewed the three main extreme events, we decided that landslides were a promising area to work on. Whereas, for forest fires it was pointed out that it would be more difficult to produce meaningful results in only three months and, for floods, it would be much harder to get our hands on relevant data sources.
-
-
-\section{Proposal}
-
-We propose a ML oriented method for early-warning of landslide events in Continental Chile, aiming to help the decision-makers from the National Emergency Office of the Ministry of the Interior \href{https://www.onemi.gov.cl/}{ONEMI} make informed decisions.
+%As we reviewed the three main extreme events, we decided that landslides were a promising area to work on. Whereas, for forest fires it was pointed out that it would be more difficult to produce meaningful results in only three months and, for floods, it would be much harder to get our hands on relevant data sources.
 
 
-\section{Related Research}
+%\section{Related Research}
 
 
-Several related research on landslide events has been done. 
-On the theoretical side, there have been very good attempts to model the phenomena using numerical simulations. For example, given the occurrence of a landslide, there have been attempts to obtain knowledge about the probability density function of the extension and duration of it previous to the event actually takes place \cite{characteristic_scales}. 
-More probabilistic approaches have been taken into consideration, such as using \emph{Information Value}, \emph{Weights of Evidence} and \emph{Certainty Factor} \cite{predictivelandslide}. There have been more ML related approaches, like SVM based techniques or deep learning's Fully Connected Sparse Autoencoder (FC-SAE) \cite{fcsae}, used in landslide susceptibility modeling \cite{svmlandslide}. There's been also studies of several deep learning approaches applied to deep-seated landslides. \cite{deep_seated_implementations} Has reviewed multiple machine learning based nowcasting strategies applied to the latter, ranging from LSTM to ELM SVM.
-%c me murio el cel
-%dale tu jose
-% tengo una duda: porque nuestro estilo de cita es [numero] nomas. en vez de (apellido et al). aaa ya kse, los ponemos al final de la frase. 
-% Yo he visto el [numero] mas seguido me parec
-%No es lo q pusiste en el chat?puse strategies. implementations me suena a su blog de mediumxd 
-% AAhhh , no cache q habias cambiado eso tambien jaj
-%aja%Y yaaya,  khso
-%dele nomaaaaaaaaa
-\section{Why is this problem relevant to climate?}
+%Several related research on landslide events has been done. 
+%On the theoretical side, there have been very good attempts to model the phenomena using numerical simulations. For example, given the occurrence of a landslide, there have been attempts to obtain knowledge about the probability density function of the extension and duration of it previous to the event actually takes place \cite{characteristic_scales}. 
+%More probabilistic approaches have been taken into consideration, such as using \emph{Information Value}, \emph{Weights of Evidence} and \emph{Certainty Factor} \cite{predictivelandslide}. There have been more ML related approaches, like SVM based techniques or deep learning's Fully Connected Sparse Autoencoder (FC-SAE) \cite{fcsae}, used in landslide susceptibility modeling \cite{svmlandslide}. There's been also studies of several deep learning approaches applied to deep-seated landslides. \cite{deep_seated_implementations} Has reviewed multiple machine learning based nowcasting strategies applied to the latter, ranging from LSTM to ELM SVM.
 
-With the exacerbation of climate change; droughts, precipitations, soil changes and other phenomena have become more extreme while at the same time becoming more unpredictable. \cite{climatechangeimpacts}. 
+
+%\section{Why is this problem relevant to climate?}
+
+%With the exacerbation of climate change; droughts, precipitations, soil changes and other phenomena have become more extreme while at the same time becoming more unpredictable. \cite{climatechangeimpacts}. 
+%This fact is of great relevance considering that intense rainfall events, rapid snow melt, storm waves and deforestation are some of the most important trigger factors of landslides \cite{libro_geologia}.
+
+
+%In the case of northern and central Andean regions of Chile, several studies \cite{boisier, falvey, garreaud} have shown important changes in climate patterns trends since the last four decades. Particularly, there has been an increase in temperatures of 0,25°C per decade, while it is expected that precipitations will decrease in the next decades, even reaching deficits between 25\% and 50\%. It is expected that these significant changes in the regional climate will affect the frequency and magnitude of landslides.
+
+%The climate crisis we are facing as a planet is not only affecting the environment, but also affecting thousands of millions \cite{landslidesandclimatechange}. In Chile, landslides has affected numerous communities located in Andes's foothills. According to data from SERNAGEOMIN, between 1980 and 2017 there has been at least 214 deaths in the country because events like landslides and debris flows \cite{sernageomin}.
+
+%\section{Research Question}
+
+%One of the important points missing that we noticed is the lack of consideration to the risks related to this phenomena. By risk we understand, as said by Pedro Berrios, ``the danger affecting communities, ranging from material losses to death''. Another factor to take into account is the need of an adaptive model that takes into account future weather data variability. In this context, our main goal is to answer the following: 
+
+
+
+%\textit{Taking into account the current weather variability and the risk, as defined above: How can we improve the current early-warning systems with statistical models? moreover: Is it possible to predict the place and time of occurrence of landslides?}
+
+
+%\section{Why use Machine Learning?}
+% En esta sección faltan MUCHAS referencias uwu
+
+%As Pedro told us in his interview, in remote and isolated populations there is not enough resources or money for a complex monitoring system, so availability of real time data for all catchments can be non feasible. However, historical data and real-time weather data is available hence allowing for a ML model that takes of this to be a solution worth of consideration.   
+
+%Moreover, the data at hand uses different types of formats, e.g. gridded weather data or local remote sensing from susceptible slopes. Therefore, techniques that can take advantage of this multiplicity of formats are essential. This is where ensemble learning \cite{ensembles} or other machine learning methods \cite{other_data_fusion} can be of use. 
+
+%Given this, the opportunity to use machine learning seems clear. Due to its ability to find complex or hidden correlations between the data sources, depending of the type of models used. 
+
+%As a side note, as a result from our meeting with Pedro Berrios, we are aware that currently ONEMI's emergency alerts for landslides is based on expert human criteria that analyses each of the available observations. It's not difficult to deduce that the implementation of a machine learning model would improve this repetitive task and thus making experts available to do more relevant work. %
+
+
+%\section{Type of Research Contribution}
+
+%The contribution would be the implementation of new techniques and ML models to evaluate the real-time risk of a landslide, prioritizing the prevention of human losses. Also, using the datasets and information that is available in Chile and low density regions.  %
+
+
+% Una definicion del problema, que buscamos hacer, pregunta de investigacion
+\section{Introduction}
+
+% Relevancia del estudio
+% Qué se ha hecho / Qué hemos hecho (Esto es el background)
+% Lo que queremos hacer
+% Objetivos
+
+%Porq este problema es relevante, porq tiene q ver con cambio climatico, porq usar ML y trabajos previos
+%\subsection{Background}
+
+With the exacerbation of climate change; droughts, precipitation, soil changes and other phenomena have become more extreme while at the same time becoming more unpredictable. \cite{climatechangeimpacts}. 
 This fact is of great relevance considering that intense rainfall events, rapid snow melt, storm waves and deforestation are some of the most important trigger factors of landslides \cite{libro_geologia}.
 
 
-In the case of northern and central Andean regions of Chile, several studies \cite{boisier, falvey, garreaud} have shown important changes in climate patterns trends since the last four decades. Particularly, there has been an increase in temperatures of 0,25°C per decade, while it is expected that precipitations will decrease in the next decades, even reaching deficits between 25\% and 50\%. It is expected that these significant changes in the regional climate will affect the frequency and magnitude of landslides.
+%In the case of northern and central Andean regions of Chile, several studies \cite{boisier, falvey, garreaud} have shown important changes in climate patterns trends since the last four decades. Particularly, there has been an increase in temperatures of 0,25°C per decade, while it is expected that precipitations will decrease in the next decades, even reaching deficits between 25\% and 50\%. It is expected that these significant changes in the regional climate will affect the frequency and magnitude of landslides.
 
-The climate crisis we are facing as a planet is not only affecting the environment, but also affecting thousands of millions \cite{landslidesandclimatechange}. In Chile, landslides has affected numerous communities located in Andes's foothills. According to data from SERNAGEOMIN, between 1980 and 2017 there has been at least 214 deaths in the country because events like landslides and debris flows \cite{sernageomin}.
+The climate crisis we are facing as a planet is not only affecting the environment, but also affecting thousands of millions of people \cite{landslidesandclimatechange}. In Chile, landslides have affected numerous communities located in Andes's foothills. According to data from the National Service of Geology and Mining of Chile \href{https://www.sernageomin.cl/}{(SERNAGEOMIN)}, between 1980 and 2017 there has been at least 214 deaths in the country because of events like landslides and debris flows \cite{sernageomin}. 
 
-\section{Research Question}
-
-One of the important points missing that we noticed is the lack of consideration to the risks related to this phenomena. By risk we understand, as said by Pedro Berrios, ``the danger affecting communities, ranging from material losses to death''. Another factor to take into account is the need of an adaptive model that takes into account future weather data variability. In this context, our main goal is to answer the following: 
+In that context, one of the important points missing that is noticed by the team is the lack of consideration to the risks related to this phenomena. The risk will be understood as said by Pedro Berrios, Engineer that works at \href{https://www.sernageomin.cl/}{SERNAGEOMIN}, ``the danger affecting communities, ranging from material losses to death''. Another factor to take into account is the need of an adaptive model that takes into account future weather data variability. Considering this background, the main goal of this project is to answer the following question: %\\
 
 
+\textit{Taking into account the current weather variability and the risk, as defined above: How can the current early-warning systems be improved through
+the use of statistical models? moreover: Is it possible to predict the place and time of occurrence of landslides?}
 
-\textit{Taking into account the current weather variability and the risk, as defined above: How can we improve the current early-warning systems with statistical models? moreover: Is it possible to predict the place and time of occurrence of landslides?}
+Therefore, this paper proposes a ML oriented method for early-warning of landslide events in Continental Chile, aiming to help the decision-makers from the National Emergency Office of the Ministry of the Interior \href{https://www.onemi.gov.cl/}{(ONEMI)} to make informed decisions.
 
-
-\section{Why use Machine Learning?}
-% En esta sección faltan MUCHAS referencias uwu
-
-As Pedro told us in his interview, in remote and isolated populations there is not enough resources or money for a complex monitoring system, so availability of real time data for all catchments can be non feasible. However, historical data and real-time weather data is available hence allowing for a ML model that takes of this to be a solution worth of consideration.   
-
-Moreover, the data at hand uses different types of formats, e.g. gridded weather data or local remote sensing from susceptible slopes. Therefore, techniques that can take advantage of this multiplicity of formats are essential. This is where ensemble learning \cite{ensembles} or other machine learning methods \cite{other_data_fusion} can be of use. 
-
-Given this, the opportunity to use machine learning seems clear. Due to its ability to find complex or hidden correlations between the data sources, depending of the type of models used. 
-
-As a side note, as a result from our meeting with Pedro Berrios, we are aware that currently ONEMI's emergency alerts for landslides is based on expert human criteria that analyses each of the available observations. It's not difficult to deduce that the implementation of a machine learning model would improve this repetitive task and thus making experts available to do more relevant work. %
-
-
-\section{Type of Research Contribution}
-
-The contribution would be the implementation of new techniques and ML models to evaluate the real-time risk of a landslide, prioritizing the prevention of human losses. Also, using the datasets and information that is available in Chile and low density regions.  %
-
-
-\section{Proposed Solutions/Methods}
-
-At this point of the research process, we have the following proposed solutions to answer the question: %
-
+To achieve this, the following objectives are proposed:
 \begin{enumerate}
-    \item Combination of LSTM and Convolutional Networks.
-    \item MOGPS with spectral mixture.
+    \item Find and define the datasets that are going to be used.
+    \item Extract and preprocess relevant information from the datasets.
+    \item Process the datasets and create training data.
+    \item Create and implement a first model of landslides prediction.
+    \item Obtain preliminary results and define the next steps.
 \end{enumerate}
 
-The idea behind implementating  LSTM and Convolutional networks is to be able to combine both satellite and geographic data on a time series fashion.  
 
-The implementation of MOGPS's offers an extremely powerful tool to work with time series, even detecting small correlations between several sources, allowing it to make accurate future predictions in complex systems. 
+% Parrafo con la estructura del informe (secciones)
 
-The human risk factor has to be considered in the implementation, due to the limited resources that emergency rescue organizations operate, its important to prioritize response to critical areas. 
+\section{Methodology}
 
-\section{Possible Datasets}
+For the initial development of an early-warning system four main components are identified: the data description and extraction, the landslide prediction and the risk factor.
+
+\subsection{Description of Datasets considered in this work}
+
+% \section{Datasets}
+
+
 \begin{itemize}
-    \item \href{http://vismet.cr2.cl/}{Meteorological Visualization (VisMet)}, is a real time and historical meteorological data of Chile, by the Center for Climate and Resilience Research (CR2)
-    \item Acceleration maps offered by the National Sismologic Center.
+    \item \href{http://vismet.cr2.cl/}{Meteorological Visualization (VisMet)}, contains the real time and historical meteorological data of Chile, by the Center for Climate and Resilience Research (CR2)
+    \item Acceleration maps offered by the National Seismological Center.
     \item Census of Chile for demographic data
-    \item Georeferenced data of urban areas in the country provided by \href {http://www.ide.cl/}{IDE Chile}
-    \item Slope, Land use, Topology, Soil moisture, Precipitation, Snow melting and Deformation. All of this key variables will be taken from satellite observation data offered by ProjecX organizers.
+    \item Georeferenced data of urban areas, road network and drainage network in the country provided by \href {http://www.ide.cl/}{IDE Chile}
+    \item Slope, Land use, Topography, Soil moisture, Precipitation, Snow melting and Deformation. All of this key variables will be taken from satellite observation data offered by Descartes Lab.
     \item \href{https://maps.nccs.nasa.gov/arcgis/apps/webappviewer/index.html?id=824ea5864ec8423fb985b33ee6bc05b7}{NASA Landside Viewer}.
-    \item Remote sensing products, like MODIS and Landsat satellites images. These tools can provide information about the presence of vegetation (NDVI index) and storms (infrared bands).
-    \item \href{https://portalgeominbeta.sernageomin.cl/}{A database containing geographic position and date of recorded landslides around Chile proportioned by the SERNAGEOMIN.}
+    \item Remote sensing products, like ASTER GDEM, MODIS and Landsat satellites images. These tools can provide information about the Digital Elevation Model (DEM), presence of vegetation (NDVI index) and storms (infrared bands).
+    \item \href{https://portalgeominbeta.sernageomin.cl/}{Portal GEOMIN}, a database of SERNAGEOMIN containing geographic position, date and other associated information of recorded landslides around Chile (Figure 1).
     % Creo q podriamos entregar
     % sip
     % me parec
+    \item CHIRPS Daily Precipitation Weather Product from Descartes Labs, to complement Precipitation Data extracted from VisMet.
 \end{itemize}
 
-\section{Workflow}
+\begin{figure}
+  \centering
+  \includegraphics[width=\linewidth]{figures/portal geomin 2.png}
+  \caption{Sample of the interface from the platform \href{https://portalgeominbeta.sernageomin.cl/}{\textit{Portal GEOMIN}}, that shows the location of landslides in Chile.} % Ejemplo de la interfaz a través del portal de SERNAGEOMIN
+  \label{fig:CNNLSTM}
+\end{figure}
 
-At this time, the estimated workflow is as follows for the next two and a half months: 
+%\subsubsection{\textbf{Datasets to be implemented}}
+%\begin{itemize}
+    
+%\end{itemize}
+%}
 
-\begin{enumerate}
-    \item Data prepossessing, cleanup and visualization (2 weeks).
-    \item Preparation of work environment (1 week).
-    \item Testing viability of models and definition of final implementation(1 week). 
-    \item Training (3 weeks).
-    \item Results analysis (1 week).
-    \item Paper redaction (2 weeks).
-\end{enumerate}
+\subsection{Data Extraction}
+
+%A. Data extraction and preprocessing
+%B. Data processing
+%C. Data intersection
+
+\subsubsection{Data extraction and preprocessing}
+
+\begin{itemize}
+    \item The \href{http://vismet.cr2.cl}{Meteorological Visualization (VisMet)}  data is available via the app web, but it is difficult to extract a large amount of information. So it was created an API to extract Precipitation Data in a range of days and geographic position of each sensor. Thus this dataset will be adequate for the Data Intersection with Satellital Data.
+    
+    \item For each one of the sixteen regions of Chile, it was extracted a Digital Elevation Model (DEM) map from data provided by ASTER Global Digital Elevation Model (GDEM), Version 3. The land area of each pixel in the maps is equivalent to 1 arc second square (approximately 30 square meters in a projection near the equator). 
+    
+    \item Using Descartes Labs API, the data was obtained from Geographic Information of GSOD, CHIRPS and the CFS satellites, resulting in Data Frames, which it was preprocessed to obtain Polygons from them. % Usando la API de DescartesLabs, se obtiene la información geográfica proveniente de los satelites [PREGUNTAR CUALES USARON], resultando en dataframes, los cuales se procesaron para obtener polígonos a partir de ellos.
+    
+    
+\end{itemize}
+\subsubsection{Data processing}
+
+\noindent
+    
+  From the DEM's maps and by using raster calculators and functions from the software GRASS GIS, it was possible to obtain different layers associated with topographic parameters, for each region of Chile. These parameters provide additional information to the physical characterization of the terrain. Particularly, in this project it was considered the next five topographical parameters: slope angle, slope aspect, length slope, TWI and SPI, all of them considered as important landslides conditional factors in several previous studies \cite{abedini2019, pourghasemi2013}. A brief description of each factor is provide below:
+\begin{itemize}
+    \item Slope angle: it refers to the mean slope angle of each pixel measured in degrees (°), where an angle of 0° indicates an horizontal terrain and an angle of 90° indicates a fully vertical slope.
+    \item Slope aspect: indicates the orientation with respect of geographical north of the slope of each pixel, measured in degrees. Therefore, a slope aspect of 0° is associated with north and a slope aspect of 180° with south.
+    \item Length Slope (LS): value associated with the length of the slope that passes through each pixel, measured in kilometers. If the terrain is flat, the length slope is taken as 0.03, value approximately equals to the length of the pixel.
+    \item Topographic Wetness Index (TWI): is a topographical index related to the potential of runoff generation of each pixel. This index is calculated by equation (1).
+    \begin{equation}\label{eq:TWI}
+        TWI = \log\left[\frac{a}{\tan(b)}\right]
+    \end{equation}
+    where $a$ is the drainage area upstream of the pixel and $b$ is the slope angle measured in radians. 
+    \item Stream Power Index (SPI): is a topographical index that indicates the erosive potential of a pixel due to the action of water flow. It is calculated by equation (2).
+    \begin{equation}
+        SPI = \log[a \cdot \tan(b)]
+    \end{equation}
+    where $a$ and $b$ are the same variables from equation \eqref{eq:TWI}.
+\end{itemize}
+
+\subsubsection{Data intersection}
+\begin{itemize}
+    \item The process starts with the creation of a data structure, from the intersection of the datasets considered in this work (section 2.1.1) and Descartes Labs data. From the data extraction, and the data from Descartes Labs, is possible to obtain the SceneCollection dataset. Finally, from this last dataset, attributes such as the number of scenes, the size in megabytes, among others are obtained.
+
+    The plan is to upload this dataset intersection to a new collection or upload this dataset to Google Bucket. Anyway, this section will be more important for the last steps.
+\end{itemize}
+
+\subsubsection{Create Training Data} 
+
+\noindent
+
+To create the training data, the values stored in the dataset are extracted and made into a tensor of shape [\textbf{data\_length}, \textbf{n\_t\_frames}, \textbf{n\_channels}, \textbf{width}, \textbf{height}]. With \textbf{data\_length} the number of samples, \textbf{n\_t\_frames} the number of the total time observations, \textbf{n\_channels} the amount of data images stacked on top of each other and the \textbf{width} and \textbf{height} of each image respectively. Then, each stack of images is resized to a fixed \textbf{width} and \textbf{height} and normalized between 0 and 1.\\
+This normalized data is then augmented using image transformations and adding a small noise. Finally the data is separated in a training, validation and test datasets so it is ready to train the model.
+
+
+
+\subsection{Landslide Prediction}
+
+For the implementation of the landslide prediction system, the team was highly inspired by implementations of weather nowcasting systems \cite{Forecast_LSTM} that combined a Convolutional Neural Network (CNN) with a LSTM \cite{LSTM} to make weather predictions. %For our objective, the model is composed of a CNN module, that extracts the features for each time measure of the sample wich are feed to aa LSTM that extracts the final features that are 
+The proposed model, extracts the features of the 3d data matrix for each time sample using a CNN module adapted for the number of channels. These features are then concatenated to make a sequence that is fed to a LSTM module to extract the sequence features. The final prediction is using a Fully Connected (FC) layer and a sigmoid activation to give the estimated probability of a landslide. 
+
+A diagram of the architecture is illustrated in Figure \ref{fig:CNNLSTM}.%\\
+
+The CNN modules can be interchanged by different CNN architectures. As a first approach this was designed as a slight modification of ResNet \cite{Resnet} with an adapted number of input channels and without the final FC layer. This choice was made, because it performs reasonably well in the ImageNet database and there is a builtin implementation of ResNet in Pytorch with several variations of different depths with pretrained weights, so we can use transfer learning to obtain better and faster results. This module can be easily modified to another architecture if there is any need. The LSTM module can also be modified by modifying the number of layers. There is also the opportunity to replace this module with a transformer module \cite{Atention}, but that will have to be evaluated in a later time. 
+The final choice of hyperparameters and the CNN module architecture is still not defined, and it will need several iterations of testing to come to a conclusion.
+
+
+\begin{figure}
+  \centering
+  \includegraphics[width=1.2\linewidth]{figures/Architecture CNNLSTM(1).png}
+  \caption{General architecture of the implemented CNN LSTM for an input of ``n'' temporal frames. The CNN modules can be interchanged by different architectures.}
+  \label{fig:CNNLSTM}
+\end{figure}
+
+\subsection{Risk Factor}
+
+To calculate the risk factor of a given disaster is not a trivial matter, %We propose an estimate of this risk by multiplying the estimated probability of a landslide by the logarithm of the addition of the estimated population density with the amount of near road infrastructure. 
+an estimated value of this risk is proposed by equation (3).
+\begin{equation}
+  risk = p \cdot \left( \lambda_0 \ln(P_D) + \lambda_1 R_Z \right)  
+\end{equation}
+
+With $p$ the landslide probability estimated by the landslide predictor, $P_D$ the estimated population density near the disaster, $R_Z$ the amount of nearby road zones and $\lambda_0, \lambda_1$ some positive weights to adjust the relevance of each component.\\
+
+Even so, it is still difficult to know exactly the population density and the amount of nearby roads. A good guess for the population density would be the amount of people living nearby according to the national census. For the road zones, a proposed solution could be the total sum of the binarized road map of the zone. \\
+This approaches still rely on scarce and \slash or unreliable data given by the government, especially on developing countries. But this approach could be feasible for the ProjectX competition.
+
+%\subsection{Outline of the Methodology}
+%\lipsum[1]
+
+\section{Experiments and Results}
+
+% Resultados de los datasets
+% Resultados de ocupar los datasets en el modelo
+% Próximos pasos
+
+In regards of the data, work has been done in creating custom interfaces for easy connection between the data sources (Descartes Lab, NASA, VISMET, etc.) and the training process. In particular there has been work on a \emph{ReMasFrame} (Remoción en Masa Data Frame) which inherits from \emph{GeoDataFrame}
+ from \emph{geopandas}. With this tool is possible to filter requests to the DescartesLabs API, making all the process as clean and documented as possible. 
+ 
+This object has been usefull, because, since it is a geopandas data structure and can do all the statistical analysis that pandas supports.
+
+A sample of the data can be seen at the Figures \ref{fig:culia1} and \ref{fig:culia2}.
+
+\begin{figure}
+  \centering
+  \includegraphics[width=0.8\linewidth]{figures/Imagen_CUlia_1.png}
+  \caption{Sample 1 of the data extracted.}
+  \label{fig:culia1}
+\end{figure}
+
+ \begin{figure}
+  \centering
+  \includegraphics[width=0.8\linewidth]{figures/imagen_culia_2.png}
+  \caption{Sample 2 of the data extracted.}
+  \label{fig:culia2}
+\end{figure}
+
+The landslide prediction model was also tested on a toy dataset to verify the expected inner workings of the model and be able to start the training on the data as soon as its available.\\
+
+%The next steps in the project are:
+%\begin{itemize}
+ %   \item To create an unified dataset with the recollected data.
+  %  \item To perform a Exploratory Data Analysis.
+   % \item To obtain false cases for landslide detections and label the data.
+    %\item To train the model on the dataset.
+%    \item To tune the hyperparameters of the model by testing.
+ %   \item To estimate the risk for a landslide on the test data.
+  %  \item To draw conclusions and observations.
+%\end{itemize}
+
+\section{Discussion}
+
+\section{Limitations and future work}
+
+\section{Conclusion}
+
+
+
+
+
+
+%\section{Proposed Solutions/Methods}
+
+%At this point of the research process, we have the following proposed solutions to answer the question: %
+
+%\begin{enumerate}
+%    \item Combination of LSTM and Convolutional Networks.
+%    \item MOGPS with spectral mixture.
+%\end{enumerate}
+
+%The idea behind implementing  LSTM and Convolutional networks is to be able to combine both satellite and geographic data on a time series fashion.  
+
+%The implementation of MOGPS's offers an extremely powerful tool to work with time series, even detecting small correlations between several sources, allowing it to make accurate future predictions in complex systems. 
+
+%The human risk factor has to be considered in the implementation, due to the limited resources that emergency rescue organizations operate, its important to prioritize response to critical areas. 
+
+
+
+
+
+%\section{Workflow}
+
+%At this time, the estimated workflow is as follows for the next two and a half months: 
+
+%\begin{enumerate}
+%    \item Data pre-processing, cleanup and visualization (2 weeks).
+%    \item Preparation of work environment (1 week).
+%    \item Testing viability of models and definition of final implementation(1 week). 
+%    \item Training (3 weeks).
+%    \item Results analysis (1 week).
+%    \item Paper redaction (2 weeks).
+%\end{enumerate}
 
 
 \bibliographystyle{ACM-Reference-Format}
